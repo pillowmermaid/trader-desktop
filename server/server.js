@@ -91,28 +91,6 @@ app.get('/rest/instruments', function (req, res) {
     return res.send(instrumentRepository.getAll());
 });
 
-// ----- Order -----
-// id: int
-// creationTime: date,
-// side: 'Buy' | 'Sell'
-// symbol: String
-// quantity: int
-// quantityPlaced: int
-// quantityExecuted: int
-// limitPrice: float
-// priority: int  [1 (Low) - 100 (High)]
-// status: 'New' | 'Placed' | 'Filled' | 'Canceled'
-// traderId: String
-
-// Create order
-// Expects an order in the request body with the following properties filled:
-// {
-//   "side": "Buy" | "Sell",
-//   "symbol": String,
-//   "quantity": int,
-//   "limitPrice": float,
-//   "traderId": String
-// }
 app.post('/rest/orders', function (req, res) {
     'use strict';
     var orderParams = req.body;

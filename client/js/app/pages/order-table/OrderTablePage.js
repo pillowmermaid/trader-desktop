@@ -21,10 +21,14 @@
  */
 define(
     [
+        'app/domain/Repository',
+        'app/widgets/orderTable-header/OrderTableHeader',
+        'app/widgets/orderTable-toolbar/OrderTableToolbar',
+        'app/widgets/orderTable/OrderTableWidget',
         'keel/BaseView',
         'text!app/pages/order-table/OrderTablePageTemplate.html'
     ],
-    function(BaseView, OrdertablePageTemplate) {
+    function(Repository, OrderTableHeader, OrderTableToolbar, OrderTableWidget, BaseView, OrderTablePageTemplate) {
         'use strict';
 
         return BaseView.extend({
@@ -32,12 +36,36 @@ define(
             id: 'order-table-page',
 
             template: {
-                name: 'OrdertablePageTemplate',
-                source: OrdertablePageTemplate
+                name: 'OrderTablePageTemplate',
+                source: OrderTablePageTemplate
             },
 
             postRender: function() {
                 this.addChildren([
+                    {
+                        id: 'OrderTableHeader',
+                        viewClass: OrderTableHeader,
+                        parentElement: this.$el,
+                        options:{
+                            collection: Repository.getUsers()
+                        }
+                    },
+                    {
+                        id: 'OrderTableToolbar',
+                        viewClass: OrderTableToolbar,
+                        parentElement: this.$el,
+                        options:{
+                            collection: Repository.getOrders()
+                        }
+                    },
+                    {
+                        id: 'OrderTableWidget',
+                        viewClass: OrderTableWidget,
+                        parentElement: this.$el,
+                        options: {
+                            collection: Repository.getOrders()
+                        }
+                    }
                 ]);
             }
         });

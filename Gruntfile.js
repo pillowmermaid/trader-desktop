@@ -108,7 +108,7 @@ module.exports = function(grunt) {
         // Environments
         browser       : true,
         couch         : false,
-        devel         : false,
+        devel         : true,
         dojo          : false,
         jquery        : true,
         mootools      : false,

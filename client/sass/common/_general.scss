@@ -36,8 +36,35 @@ select {
 }
 
 /* -----------------------------------------------------------------------------
- * Order Table Page
+ * Order Table Page Containers
  * -------------------------------------------------------------------------- */
 #order-table-page {
-    padding: 10px;
+}
+
+#header{
+    float: left;
+    font-size: 12pt;
+    font-family: Arial;
+    padding: 10px 5px 10px 5px;
+    width: 100%;
+    min-width: 320px;
+}
+
+#toolbar{
+    border-top-width: 1px;
+    border-top-color: $black;
+    border-top-style: solid;
+    width: 100%;
+    float: left;
+    min-width: 320px;
+}
+
+.table{
+    clear: both;
+    min-width: 320px;
+}
+
+.order-table{
+    width: 100%;    
+    min-width: 320px;
 }

@@ -1,0 +1,54 @@
+/* -----------------------------------------------------------------------------
+ * header-containers
+ * -------------------------------------------------------------------------- */
+ .table-title{
+    float: left;
+    font-family: Arial;
+    font-size: 16pt;
+ }
+
+ .user-info{
+    float: right;
+ }
+
+ .current-user{
+    padding-right: 10px;
+    font-style: italic;
+    float: left;
+ }
+
+ .signout{
+    text-decoration: none;
+    padding-right: 10px;
+ }
+ 
+ @media(max-width:380px){
+    .table-title{
+        font-size: 12pt;
+    }
+    .signout{
+        font-size: 9pt;
+    }
+    .chart-buttons{
+        float: left;
+    }
+    .current-user{
+        font-size: 14px;
+    }
+}
+
+/* -----------------------------------------------------------------------------
+ * button-containers in the Toolbar
+ * -------------------------------------------------------------------------- */
+.button-container{
+    padding: 8px 5px 8px 5px;
+    float: left;
+}
+
+.trade-buttons{
+    float: left;
+}
+
+.chart-buttons{
+    float: right;
+}

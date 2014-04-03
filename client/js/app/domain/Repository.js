@@ -38,7 +38,7 @@ define(
         // Module level variables act as singletons
         var _users = new Backbone.Collection();
         var _instruments = new Backbone.Collection();
-        var _orders = new Backbone.Collection();
+        var _orders = new Backbone.Collection({});
 
         var _loggedInUser = null;
 
@@ -71,19 +71,31 @@ define(
         _orders.fetch();
 
         Socket.on('orderCreatedEvent', function(order) {
-            console.log(order);
+            _orders.add(order);
         });
 
         Socket.on('placementCreatedEvent', function(placement) {
-            console.log(placement);
+            _orders.add(
+                {
+                    id: placement.orderId,
+                    quantityPlaced: placement.quantityPlaced + _orders.get(placement.orderId).get('quantityPlaced'),
+                    status: placement.status
+                }, {merge: true}
+            );
         });
 
         Socket.on('executionCreatedEvent', function(execution) {
-            console.log(execution);
+            _orders.add(
+                {
+                    id: execution.orderId,
+                    quantityExecuted: execution.quantityExecuted + _orders.get(execution.orderId).get('quantityExecuted'),
+                    status: execution.status
+                }, {merge: true}
+            );
         });
 
         Socket.on('allOrdersDeletedEvent', function() {
-            console.log('allOrdersDeletedEvent');
+            _orders.reset();
         });
 
         return _repository;
